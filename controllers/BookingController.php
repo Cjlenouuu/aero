@@ -38,9 +38,7 @@ class BookingController extends Controller
 
             $tableB->save();
             $route->save();
-            return $this->render('mybooking', ['bookings' => $bookings,
-                'pagination' => $pagination,
-            ]);
+            return $this->render('bysucces', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных
             return $this->render('booking', ['route' => $route,'model' => $model]);

@@ -39,10 +39,16 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Билеты', 'url' => ['/route/index']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+          //  ['label' => 'Билеты', 'url' => ['/route/index']],
 
-              Yii::$app->user->isGuest ? (
+            Yii::$app->user->isGuest ? (
+            ['label' => 'Билеты', 'url' => ['/route/noreg']]
+
+            ) : (
+            ['label' => 'Билеты', 'url' => ['route/index']]
+            ),
+
+            Yii::$app->user->isGuest ? (
                   ['label' => 'Registration', 'url' => ['/site/reg']]
 
             ) : (

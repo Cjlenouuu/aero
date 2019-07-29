@@ -21,4 +21,18 @@ class RouteController extends Controller
     'pagination' => $pagination,
     ]);
     }
+     public function actionNoreg()
+        {
+            $query = Route::find();
+            $query->where('sum_ticket!=0');
+
+            $pagination = new Pagination([
+            'defaultPageSize' => 10,
+            'totalCount' => $query->count(),
+        ]);
+        $routes = $query->orderBy('date')->offset($pagination->offset)->limit($pagination->limit)->all();
+        return $this->render('noreg', ['routes' => $routes,
+        'pagination' => $pagination,
+        ]);
+        }
 }

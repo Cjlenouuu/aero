@@ -10,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -130,11 +131,11 @@ class SiteController extends Controller
     public function actionReg()
     {
         $model = new RegForm();
-       //$user = new Users();
+       //$user = new User();
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             $model->save();
-            Yii::$app->user->login(Users::findByLogin($model->login));
+            Yii::$app->user->login(User::findByLogin($model->login));
             return $this->goHome();
         }
             return $this->render('reg', ['model' => $model]);
